@@ -1,10 +1,18 @@
 package sit707_week2;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * This class demonstrates Selenium locator APIs to identify HTML elements.
@@ -86,7 +94,7 @@ public class SeleniumOperations {
 		createAccountButton.click();
 
 		
-		
+		captureScreenshot(driver);
 		
 		// Sleep a while
 		sleep(120);
@@ -97,6 +105,7 @@ public class SeleniumOperations {
 	
 	
 	public static void facebook_signup_page(String url) {
+
 		// Step 1: Locate chrome driver folder in the local drive.
 		System.setProperty(
 				"webdriver.chrome.driver", 
@@ -159,8 +168,8 @@ public class SeleniumOperations {
         WebElement signUpButton = driver.findElement(By.name("websubmit"));
         signUpButton.click();
         
-		
-
+    	
+		captureScreenshot(driver);
 			
 		
 		// Sleep a while
@@ -170,4 +179,30 @@ public class SeleniumOperations {
 		driver.close();	
 	}
 	
+	public static void captureScreenshot(WebDriver driver) {
+        // Get the current timestamp
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        Date date = new Date();
+        String timestamp = formatter.format(date);
+
+        // Define the directory path to save the screenshot
+        String directoryPath = "src/main/img/";
+
+        try {
+            // Capture screenshot
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+            // Create the directory if it doesn't exist
+            Path path = Paths.get(directoryPath);
+            Files.createDirectories(path);
+
+            // Save the screenshot with timestamp as filename
+            String screenshotPath = directoryPath + "screenshot_" + timestamp + ".png";
+            Files.move(screenshotFile.toPath(), Paths.get(screenshotPath));
+
+            System.out.println("Screenshot captured and saved at: " + screenshotPath);
+        } catch (IOException e) {
+            System.out.println("Failed to capture screenshot: " + e.getMessage());
+        }
+    }	
 }
