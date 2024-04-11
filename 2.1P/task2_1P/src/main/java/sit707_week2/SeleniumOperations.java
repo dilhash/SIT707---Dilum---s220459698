@@ -1,6 +1,7 @@
 package sit707_week2;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -94,5 +95,79 @@ public class SeleniumOperations {
 		driver.close();	
 	}
 	
+	
+	public static void facebook_signup_page(String url) {
+		// Step 1: Locate chrome driver folder in the local drive.
+		System.setProperty(
+				"webdriver.chrome.driver", 
+				"/Users/dilumbal/Library/CloudStorage/OneDrive-Personal/Deakin/SIT707/chromedriver-mac-arm64/chromedriver");		
+		// Step 2: Use above chrome driver to open up a chromium browser.
+		System.out.println("Fire up chrome browser.");
+		WebDriver driver = new ChromeDriver();
+		
+		System.out.println("Driver info: " + driver);
+		
+	//	sleep(10);
+	
+		// Load a webpage in chromium browser.
+		driver.get(url);
+		
+		
+		// Find and fill first name field
+        WebElement firstNameElement = driver.findElement(By.name("firstname"));
+        System.out.println("Found element: " + firstNameElement);
+        firstNameElement.sendKeys("Dilum");
+
+        // Find and fill surname field
+        WebElement surnameElement = driver.findElement(By.name("lastname"));
+        System.out.println("Found element: " + surnameElement);
+        surnameElement.sendKeys("Balaarachchi");
+
+        // Find and fill email or phone field
+        WebElement emailElement = driver.findElement(By.name("reg_email__"));
+        System.out.println("Found element: " + emailElement);
+        emailElement.sendKeys("hashi.dilumi@example.com");
+        
+        
+        WebElement reEnterEmailElement = driver.findElement(By.name("reg_email_confirmation__"));
+        System.out.println("Found element: " + reEnterEmailElement);
+        reEnterEmailElement.sendKeys("hashi.dilumi@example.com");
+        
+
+        // Find and fill password field
+        WebElement passwordElement = driver.findElement(By.name("reg_passwd__"));
+        System.out.println("Found element: " + passwordElement);
+        passwordElement.sendKeys("password123");
+
+        // Select birthday
+        WebElement dayElement = driver.findElement(By.id("day"));
+        dayElement.sendKeys("11");
+
+        WebElement monthElement = driver.findElement(By.id("month"));
+        monthElement.sendKeys("Apr");
+
+        WebElement yearElement = driver.findElement(By.id("year"));
+        yearElement.sendKeys("1994");
+
+        System.out.println("Found element: " + dayElement + " " +monthElement + " " + yearElement);
+        
+        // Select gender
+        WebElement genderElement = driver.findElement(By.xpath("//input[@name='sex' and @value='1']"));
+        genderElement.click(); // Assuming Female is represented by value 1
+
+        // Find and click Sign Up button
+        WebElement signUpButton = driver.findElement(By.name("websubmit"));
+        signUpButton.click();
+        
+		
+
+			
+		
+		// Sleep a while
+		sleep(60);
+		
+		// close chrome driver
+		driver.close();	
+	}
 	
 }
