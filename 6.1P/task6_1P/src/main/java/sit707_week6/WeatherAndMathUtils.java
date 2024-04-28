@@ -22,8 +22,7 @@ public class WeatherAndMathUtils {
 
 		String advice = "ALL CLEAR";
 
-		if (windSpeed > DANGEROUS_WINDSPEED || precipitation > DANGEROUS_RAINFALL
-				|| (windSpeed > CONCERNING_WINDSPEED && precipitation > CONCERNING_RAINFALL)) {
+		if (windSpeed > DANGEROUS_WINDSPEED || precipitation > DANGEROUS_RAINFALL || (windSpeed > CONCERNING_WINDSPEED && precipitation > CONCERNING_RAINFALL)) {
 			advice = "CANCEL";
 		} else if (windSpeed > CONCERNING_WINDSPEED || precipitation > CONCERNING_RAINFALL) {
 			advice = "WARN";
