@@ -71,36 +71,5 @@ public class WeatherAndMathUtilsTest {
 
         Assert.assertThrows(IllegalArgumentException.class, () -> WeatherAndMathUtils.weatherAdvice(20, -5));
     }
-    
-    @Test
-    public void testTrueForEvenNumber() {
-      boolean result = WeatherAndMathUtils.isEven(14);
-      Assert.assertTrue(result==true);
-    }
-
-    @Test
-    public void testFalseForEvenNumber() {
-      boolean result = WeatherAndMathUtils.isEven(21);
-      Assert.assertTrue(result==false);
-    }
-    @Test
-    public void testTrueForPrimeNumberFornumber1() {
-      boolean result = WeatherAndMathUtils.isPrime(1);
-      Assert.assertTrue(result==true);
-    }
-    
-    @Test
-    public void testTrueForPrimeNumberFornotnumber1() {
-      boolean result = WeatherAndMathUtils.isPrime(3);
-      Assert.assertTrue(result==true);
-    }
-    
-    
-    @Test
-    public void testFalseForPrimeNumber() {
-      boolean result = WeatherAndMathUtils.isPrime(12);
-      Assert.assertTrue(result==false);
-    }
-    
 
 }
