@@ -17,24 +17,12 @@ public class WeatherAndMathUtilsTest {
         Assert.assertNotNull("Student name is null", studentName);
     }
     
-
     @Test
-    public void testNegativeWindSpeedThrowsException() {
-   
-        try {
-        	WeatherAndMathUtils.weatherAdvice(-1, 5);
-            Assert.fail("Expected IllegalArgumentException");  //if this passes there hasn't been any exception caught which means the test is failed
-        } catch (IllegalArgumentException e) {
-        	//Exception caught, test passed.
-        }
+    public void testAllClearWeather() {
+        String advice = WeatherAndMathUtils.weatherAdvice(30, 3.0);
+        Assert.assertEquals("ALL CLEAR", advice);
     }
-
     
-    @Test
-    public void testNegativePrecipitationThrowsException() {
-
-        Assert.assertThrows(IllegalArgumentException.class, () -> WeatherAndMathUtils.weatherAdvice(20, -5));
-    }
     
     @Test
     public void testWarnWhenWindExceedConcerningButLessThanDangerous() {
@@ -64,6 +52,24 @@ public class WeatherAndMathUtilsTest {
     public void testCancelWindspeedAndPrecipitationBothExceedConcerning() {
         String advice = WeatherAndMathUtils.weatherAdvice(46.0, 5);
         Assert.assertEquals("CANCEL", advice);
+    }
+    
+    @Test
+    public void testNegativeWindSpeedThrowsException() {
+   
+        try {
+        	WeatherAndMathUtils.weatherAdvice(-1, 5);
+            Assert.fail("Expected IllegalArgumentException");  //if this passes there hasn't been any exception caught which means the test is failed
+        } catch (IllegalArgumentException e) {
+        	//Exception caught, test passed.
+        }
+    }
+
+    
+    @Test
+    public void testNegativePrecipitationThrowsException() {
+
+        Assert.assertThrows(IllegalArgumentException.class, () -> WeatherAndMathUtils.weatherAdvice(20, -5));
     }
     
     @Test

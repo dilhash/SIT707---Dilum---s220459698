@@ -1,5 +1,5 @@
-/**
- * package sit707_week6;
+/***
+ package sit707_week6;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,7 +39,7 @@ public class Main
         System.out.println("Advice =  "  + advice5);
 
         // Example 2: Warning - Concerning Wind Speed
-        System.out.println("Warn weather testing  - precipitation exceeds CONCERNING_RAINFALL");
+        System.out.println("Normal");
         double windSpeed6 = 30.0;
         double rainfall6 = 2.0;
         String advice6  = WeatherAndMathUtils.weatherAdvice(windSpeed6, rainfall6);
@@ -50,4 +50,5 @@ public class Main
         
     }
 }
- */
+
+**/
