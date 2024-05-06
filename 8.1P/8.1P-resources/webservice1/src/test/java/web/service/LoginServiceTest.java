@@ -43,7 +43,7 @@ public class LoginServiceTest {
 		ele.sendKeys("dilum_pass");
 		
 		// Find DoB element
-	    WebElement dob = driver.findElement(By.id("dob")); // Assuming DoB element has id "dob"
+	    WebElement dob = driver.findElement(By.id("dob")); 
 	    dob.clear();
 	    dob.sendKeys("11/11/2000");
 		
@@ -89,7 +89,7 @@ public class LoginServiceTest {
 	    password.sendKeys("wrong_password"); // Invalid password
 
 	    // Find DoB element
-	    WebElement dob = driver.findElement(By.id("dob")); // Assuming DoB element has id "dob"
+	    WebElement dob = driver.findElement(By.id("dob")); 
 	    dob.clear();
 	    dob.sendKeys("11/11/2000");
 
