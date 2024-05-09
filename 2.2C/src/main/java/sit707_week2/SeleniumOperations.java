@@ -1,9 +1,11 @@
 package sit707_week2;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import java.io.File;
@@ -34,6 +36,7 @@ public class SeleniumOperations {
 	
 	
 	public static void officeworks_registration_page(String url) {
+
 		// Step 1: Locate chrome driver folder in the local drive.
 		System.setProperty(
 				"webdriver.chrome.driver", 
@@ -101,6 +104,49 @@ public class SeleniumOperations {
 		
 		// close chrome driver
 		driver.close();	
+	}
+	
+	public static void officework_locatorAPI(String url) {
+		
+		  // Set ChromeDriver path (assuming it's in your system PATH)
+        System.setProperty("webdriver.chrome.driver", "/Users/dilumbal/Downloads/chromedriver-mac-arm64/chromedriver");
+
+        // Configure Chrome options
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        // Initialize ChromeDriver with options
+        WebDriver driver = new ChromeDriver(options);
+
+        // Your test code goes here
+        // For example:
+        driver.get(url);
+     // Step 4: Identify elements using relative locators
+        WebElement emailField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(By.id("password")));
+        WebElement firstNameField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(emailField));
+        WebElement lastNameField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(firstNameField));
+        WebElement passwordField = driver.findElement(By.id("password"));
+        WebElement phoneNumberField = driver.findElement(RelativeLocator.with(By.tagName("input")).below(passwordField)); // Assuming this is the phone number field
+        WebElement createAccountButton = driver.findElement(By.cssSelector("[data-testid='account-action-btn']"));
+
+        // Step 5: Fill values in target elements
+        firstNameField.sendKeys(""); // Clearing the first name field
+        lastNameField.sendKeys("Balaarachchi");
+        emailField.sendKeys("hashi.dilumi@gmail.com");
+        passwordField.sendKeys("P@ssw0rd12345");
+        phoneNumberField.sendKeys("1234567890"); // Filling the phone number field with a sample value
+
+
+        // Step 6: Click the "Create account" button
+        createAccountButton.click();
+        
+        sleep(10);
+
+        // Step 7: Capture screenshot
+        captureScreenshot(driver);
+
+        // Step 8: Close the browser
+        driver.close();
 	}
 	
 	
