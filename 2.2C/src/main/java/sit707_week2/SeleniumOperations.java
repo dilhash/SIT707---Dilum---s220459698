@@ -2,6 +2,12 @@ package sit707_week2;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import io.netty.handler.timeout.TimeoutException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -120,33 +126,67 @@ public class SeleniumOperations {
 
         // Your test code goes here
         // For example:
-        driver.get(url);
-     // Step 4: Identify elements using relative locators
-        WebElement emailField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(By.id("password")));
-        WebElement firstNameField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(emailField));
-        WebElement lastNameField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(firstNameField));
-        WebElement passwordField = driver.findElement(By.id("password"));
-        WebElement phoneNumberField = driver.findElement(RelativeLocator.with(By.tagName("input")).below(passwordField)); // Assuming this is the phone number field
-        WebElement createAccountButton = driver.findElement(By.cssSelector("[data-testid='account-action-btn']"));
+        try {
+            driver.get(url);
 
-        // Step 5: Fill values in target elements
-        firstNameField.sendKeys(""); // Clearing the first name field
-        lastNameField.sendKeys("Balaarachchi");
-        emailField.sendKeys("hashi.dilumi@gmail.com");
-        passwordField.sendKeys("P@ssw0rd12345");
-        phoneNumberField.sendKeys("1234567890"); // Filling the phone number field with a sample value
+            // Identify elements using relative locators
+            WebElement emailField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(By.id("password")));
+            System.out.println("Found email field element.");
+            WebElement phoneNumberField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(emailField));
+            System.out.println("Found phoneNumberField field element.");
+            WebElement lastNameField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(phoneNumberField));
+            System.out.println("Found last name field element.");
+            WebElement firstNameField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(lastNameField));
+            System.out.println("Found first name field element.");
+           
+            
+           // WebElement firstNameField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(emailField));
+            //System.out.println("Found first name field element.");
+            //WebElement lastNameField = driver.findElement(RelativeLocator.with(By.tagName("input")).above(firstNameField));
+            //System.out.println("Found last name field element.");
+            
+            WebElement passwordField = driver.findElement(By.id("password"));
+            System.out.println("Found password field element.");
+            WebElement confirmpasswordField = driver.findElement(RelativeLocator.with(By.tagName("input")).below(passwordField));
+            System.out.println("Found confirm password field element.");
+            //WebElement phoneNumberField = driver.findElement(RelativeLocator.with(By.tagName("input")).below(passwordField));
+            //System.out.println("Found phone number field element.");
+            WebElement createAccountButton = driver.findElement(By.cssSelector("[data-testid='account-action-btn']"));
+            System.out.println("Found create account button element.");
 
+            // Fill values in target elements
+            firstNameField.sendKeys("John"); // Clearing the first name field
+            System.out.println("Entered First name: Dilum");
+            lastNameField.sendKeys("Doe");
+            System.out.println("Entered last name: Balaarachchi");
+            phoneNumberField.sendKeys("1234567890");
+            System.out.println("Entered phone number: 1234567890");
+            emailField.sendKeys("jon.doe@gmail.com");
+            System.out.println("Entered email: hashi.dilumi@gmail.com");
+            passwordField.sendKeys("P@ssw0rd12345");
+            System.out.println("Entered password: P@ssw0rd1234");
+            confirmpasswordField.sendKeys("P@ssw0rd12345");
+            System.out.println("Entered password: P@ssw0rd124");
 
-        // Step 6: Click the "Create account" button
-        createAccountButton.click();
+            // Click the "Create account" button
+            createAccountButton.click();
+            System.out.println("Clicked create account button.");
+            
+
+    		captureScreenshot(driver);
+    		
+            sleep (10);//so the browser won't close right away
+
+            //Close the browser
+            driver.close();
+            System.out.println("Closed Chrome browser.");
+          } catch (Exception e) {
+            System.out.println("Error occurred: " + e.getMessage());
+          } finally {
+            driver.quit();
+          }
         
-        sleep(10);
-
-        // Step 7: Capture screenshot
-        captureScreenshot(driver);
-
-        // Step 8: Close the browser
-        driver.close();
+        
 	}
 	
 	
