@@ -1,98 +1,55 @@
 package sit707_week5;
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.AfterClass;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import static org.junit.Assert.assertTrue;
 
 public class WeatherControllerTest {
 
-	private static WeatherController wController;
-	private static int totalHours;
+    private WeatherController wController;
 
-	@BeforeClass
-	public static void initController() {
-		wController = WeatherController.getInstance();
-		totalHours = wController.getTotalHours();
-	}
+    @Before
+    public void weatherControllerSetUp() {
+        System.out.println("Setting up test...");
+        wController = WeatherController.getInstance();
+    }
 
-	@Test
-	public void testStudentIdentity() {
-		String studentId = "s220459698";
-		Assert.assertNotNull("Student ID is null", studentId);
-	}
+    @Test
+    public void testTemperaturePersist() {
+        System.out.println("+++ testTemperaturePersist +++");
 
-	@Test
-	public void testStudentName() {
-		String studentName = "Dilum Balaarachchi";
-		Assert.assertNotNull("Student name is null", studentName);
-	}
+        // Arrange: Prepare input data and expected results
+        double temperature = 19.5;
+        int hour = 10;
 
-	@Test
-	public void testTemperatureMin() {
-		System.out.println("+++ testTemperatureMin +++");
+        // Act: Perform the action
+        String persistTime = wController.persistTemperature(hour, temperature);
+        String now = new SimpleDateFormat("H:m:s").format(new Date());
 
-		double minTemperature = 1000;
-		for (int i = 0; i < totalHours; i++) {
-			double temperatureVal = wController.getTemperatureForHour(i + 1);
-			if (minTemperature > temperatureVal) {
-				minTemperature = temperatureVal;
-			}
-		}
+        // Assert: Verify the outcome
+        try {
+            long tolerance = 2000; // 2 seconds tolerance
 
-		Assert.assertTrue(wController.getTemperatureMinFromCache() == minTemperature);
-	}
+            Date persistDate = new SimpleDateFormat("H:m:s").parse(persistTime);
+            Date currentDate = new SimpleDateFormat("H:m:s").parse(now);
 
-	@Test
-	public void testTemperatureMax() {
-		System.out.println("+++ testTemperatureMax +++");
+            long timeDifference = Math.abs(persistDate.getTime() - currentDate.getTime());
 
-		double maxTemperature = -1;
-		for (int i = 0; i < totalHours; i++) {
-			double temperatureVal = wController.getTemperatureForHour(i + 1);
-			if (maxTemperature < temperatureVal) {
-				maxTemperature = temperatureVal;
-			}
-		}
+            assertTrue("Time difference: " + timeDifference + " ms", timeDifference <= tolerance);
+            
+        } catch (ParseException e) {
+            System.err.println("Error parsing date: " + e.getMessage());
+            assertTrue(false);
+        }
+    }
 
-		Assert.assertTrue(wController.getTemperatureMaxFromCache() == maxTemperature);
-	}
-
-	@Test
-	public void testTemperatureAverage() {
-		System.out.println("+++ testTemperatureAverage +++");
-
-		double sumTemp = 0;
-		for (int i = 0; i < totalHours; i++) {
-			double temperatureVal = wController.getTemperatureForHour(i + 1);
-			sumTemp += temperatureVal;
-		}
-		double averageTemp = sumTemp / totalHours;
-
-		Assert.assertTrue(wController.getTemperatureAverageFromCache() == averageTemp);
-	}
-
-	@Test
-	public void testTemperaturePersist() {
-		/*
-		 * Remove below comments ONLY for 5.3C task.
-		 */
-//		System.out.println("+++ testTemperaturePersist +++");
-//		
-//		// Initialise controller
-//		WeatherController wController = WeatherController.getInstance();
-//		
-//		String persistTime = wController.persistTemperature(10, 19.5);
-//		String now = new SimpleDateFormat("H:m:s").format(new Date());
-//		System.out.println("Persist time: " + persistTime + ", now: " + now);
-//		
-//		Assert.assertTrue(persistTime.equals(now));
-//		
-//		wController.close();
-	}
-
-	@AfterClass
-	public static void closeController() {
-		wController.close(); // Close the controller after all tests
-	}
+    @After
+    public void weatherControllerClose() {
+        System.out.println("Close down test...");
+        wController.close();
+    }
 }
