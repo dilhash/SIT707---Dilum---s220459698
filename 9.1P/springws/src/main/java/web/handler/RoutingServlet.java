@@ -71,23 +71,32 @@ public class RoutingServlet {
 		String number1 = request.getParameter("number1");
 		String number2 = request.getParameter("number2");
 		String resultUser = request.getParameter("result");
-		
-		double calculatedResult = MathQuestionService.q1Addition(number1, number2);
-		System.out.println(
-				"User result: " + resultUser + ", answer: " + calculatedResult);
-		
+		boolean isValid = MathQuestionService.numberValidation(number1, number2, resultUser);
 		RedirectView redirectView = null;
-		if (calculatedResult == Double.valueOf(resultUser)) {
-			redirectView = new RedirectView("/q2", true);
-		} else {
-			// Q1 wrong.
-			//
+		
+		if(isValid == true) {
+			double calculatedResult = MathQuestionService.q1Addition(number1, number2);
+			System.out.println(
+					"User result: " + resultUser + ", answer: " + calculatedResult);
+			
+
+			if (calculatedResult == Double.valueOf(resultUser)) {
+				redirectView = new RedirectView("/q2", true);
+			} else {
+				// Q1 wrong.
+				//
+				redirectView = new RedirectView("/q1", true);
+				// Show error message
+				//
+				redirectAttributes.addFlashAttribute("message", "Wrong answer, try again.");
+			}		
+			return redirectView;
+		}
+		else {
 			redirectView = new RedirectView("/q1", true);
-			// Show error message
-			//
-			redirectAttributes.addFlashAttribute("message", "Wrong answer, try again.");
-		}		
-		return redirectView;
+			redirectAttributes.addFlashAttribute("message", "Wrong inputs, try again.");
+			return redirectView;
+		}
 	}	
 	
 
@@ -105,27 +114,78 @@ public class RoutingServlet {
 		String number2 = request.getParameter("number2");
 		String resultUser = request.getParameter("result");
 		
-		double calculatedResult = MathQuestionService.q2Subtraction(number1, number2);
-		System.out.println("User result: " + resultUser + ", answer: " + calculatedResult);
-		
+		boolean isValid = MathQuestionService.numberValidation(number1, number2, resultUser);
 		RedirectView redirectView = null;
-		if (calculatedResult == Double.valueOf(resultUser)) {
-			redirectView = new RedirectView("/q3", true);
-		} else {
-			// Q1 wrong
-			//
+		
+		if(isValid ==true) {
+			double calculatedResult = MathQuestionService.q2Subtraction(number1, number2);
+			System.out.println("User result: " + resultUser + ", answer: " + calculatedResult);
+			
+			
+			if (calculatedResult == Double.valueOf(resultUser)) {
+				redirectView = new RedirectView("/q3", true);
+			} else {
+				// Q1 wrong
+				//
+				redirectView = new RedirectView("/q2", true);
+				// Show error message
+				//
+				redirectAttributes.addFlashAttribute("message", "Wrong answer, try again.");
+			}		
+			return redirectView;
+		}
+		else {
 			redirectView = new RedirectView("/q2", true);
-			// Show error message
-			//
-			redirectAttributes.addFlashAttribute("message", "Wrong answer, try again.");
-		}		
-		return redirectView;
-	}	
+			redirectAttributes.addFlashAttribute("message", "Wrong inputs, try again.");
+			return redirectView;
+		}
+	}
 	
 
 	@GetMapping("/q3")
 	public String q3View() {		
 		System.out.println("q3 view...");
 		return "view-q3";
-	}		
+	}	
+	
+		@PostMapping("/q3")
+		public RedirectView q3(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+			System.out.println("q2 form...");
+			String number1 = request.getParameter("number1");
+			String number2 = request.getParameter("number2");
+			String resultUser = request.getParameter("result");
+			
+			boolean isValid = MathQuestionService.numberValidation(number1, number2, resultUser);
+			RedirectView redirectView = null;
+			
+			if(isValid ==true) {
+				double calculatedResult = MathQuestionService.qa3multipy(number1, number2);
+				System.out.println("User result: " + resultUser + ", answer: " + calculatedResult);
+				
+				
+				if (calculatedResult == Double.valueOf(resultUser)) {
+					redirectView = new RedirectView("/login", true);
+					redirectAttributes.addFlashAttribute("message", "All questions Answered! Thank you for the participation");
+				} else {
+					// Q1 wrong
+					//
+					redirectView = new RedirectView("/q3", true);
+					// Show error message
+					//
+					redirectAttributes.addFlashAttribute("message", "Wrong answer, try again.");
+				}		
+				return redirectView;
+			}
+			else {
+				redirectView = new RedirectView("/q3", true);
+				redirectAttributes.addFlashAttribute("message", "Wrong inputs, try again.");
+				return redirectView;
+			}
+		
+		
+		
+
+	}	
+	
+	
 }
