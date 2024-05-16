@@ -41,7 +41,7 @@ public class TestMathQuestionService {
     }
 
     @AfterClass
-    public static void tearDown() {
+    public static void shutDown() {
         if (driver != null) {
             driver.quit();
         }
@@ -57,16 +57,35 @@ public class TestMathQuestionService {
         }
     }
 
+    
+    /*** start of Happy path Testing ***/
     @Test
-    public void testLoginSuccess() {
+    public void testLoadHomePage() {
         System.out.println("Driver info: " + driver);
         driver.navigate().to("http://localhost:8080/");
-        sleep(10);
+        sleep(5);
+        
+     // Assert the content on the home page
+        
+        // Assert the presence of the welcome message
+        WebElement welcomeMessageElement = driver.findElement(By.tagName("h2"));
+        Assert.assertEquals("Welcome", welcomeMessageElement.getText());
+        
+        
+        // Assert the presence of the login link
+        WebElement loginLinkElement = driver.findElement(By.xpath("//a[@href='/login']"));
+        Assert.assertEquals("Login", loginLinkElement.getText());
+        
+        loginLinkElement.click();
+        
+        // Assert that the URL navigated to is the login page
+        Assert.assertEquals("http://localhost:8080/login", driver.getCurrentUrl());
+        sleep(5);
 
     }
     
     @Test
-    public void testLoginSuccess2() {
+    public void testLoginSuccessforValidUsernameandValidPassword() {
         System.out.println("Driver info: " + driver);
         driver.navigate().to("http://localhost:8080/login");
         sleep(5);
@@ -92,14 +111,12 @@ public class TestMathQuestionService {
      		
      		sleep(5);
      		
-     	
-     		
      		 Assert.assertEquals("http://localhost:8080/q1", driver.getCurrentUrl());
      		
-     		//driver.close();
      	}
+    
     @Test
-    public void testValidInputValidResultForQ1() {
+    public void testValidInputsValidResultForQ1() {
         
         // Input
         String firstNumber = "10";
@@ -125,7 +142,7 @@ public class TestMathQuestionService {
     }
     
     @Test
-    public void testValidInputValidResultForQ2() {
+    public void testValidInputsValidResultForQ2() {
         
         // Input
         String firstNumber = "10";
@@ -150,9 +167,8 @@ public class TestMathQuestionService {
         Assert.assertEquals("http://localhost:8080/q3", driver.getCurrentUrl());
     }
     
-    
     @Test
-    public void testValidInputValidResultForQ3() {
+    public void testValidInputsValidResultForQ3() {
     
         
         // Input
@@ -183,4 +199,5 @@ public class TestMathQuestionService {
         Assert.assertEquals("All questions Answered! Thank you for the participation", messageElement.getText());
     
     }
+    /*** end of Happy path Testing ***/
 }
