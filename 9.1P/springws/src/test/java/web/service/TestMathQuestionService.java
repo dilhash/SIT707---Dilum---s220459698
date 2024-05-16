@@ -1,34 +1,34 @@
 package web.service;
 
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import web.MyServer;
 
 public class TestMathQuestionService {
     
 	private static Thread applicationThread;
-	private WebDriver driver;
+	private static WebDriver driver;
 	
-	private void sleep(long sec) {
+	private static void sleep(long sec) {
 		try {
-			Thread.sleep(sec*1000);
+			Thread.sleep(sec * 1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
     
-    @Before
-    public void setUp() {
-    	
-    	//starting the application
+    @BeforeClass
+    public static void setUp() {
+    	// Starting the application
     	applicationThread = new Thread(() -> {
             MyServer.main(new String[]{});
         });
@@ -40,11 +40,13 @@ public class TestMathQuestionService {
         driver = new ChromeDriver();
     }
 
-    @After
-    public void tearDown() {
+    @AfterClass
+    public static void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
         
-        
-     // Stop your application after all tests have been executed
+        // Stop your application after all tests have been executed
         if (applicationThread != null) {
             applicationThread.interrupt();
             try {
@@ -53,10 +55,6 @@ public class TestMathQuestionService {
                 e.printStackTrace();
             }
         }
-        
-        if (driver != null) {
-            driver.quit();
-        }
     }
 
     @Test
@@ -64,6 +62,125 @@ public class TestMathQuestionService {
         System.out.println("Driver info: " + driver);
         driver.navigate().to("http://localhost:8080/");
         sleep(10);
-        // Your test steps here
+
+    }
+    
+    @Test
+    public void testLoginSuccess2() {
+        System.out.println("Driver info: " + driver);
+        driver.navigate().to("http://localhost:8080/login");
+        sleep(5);
+
+     // Find username element
+     		WebElement ele = driver.findElement(By.id("username"));
+     		ele.clear();
+     		ele.sendKeys("dilum");
+     		
+     		// Find password element
+     		ele = driver.findElement(By.id("passwd"));
+     		ele.clear();
+     		ele.sendKeys("dilum_pass");
+     		
+     		// Find DoB element
+     	    WebElement dob = driver.findElement(By.id("dob")); 
+     	    dob.clear();
+     	    dob.sendKeys("11/11/2000");
+     		
+     		// Find Submit button, and click on button.
+     		ele = driver.findElement(By.cssSelector("[type=submit]"));
+     		ele.submit();
+     		
+     		sleep(5);
+     		
+     	
+     		
+     		 Assert.assertEquals("http://localhost:8080/q1", driver.getCurrentUrl());
+     		
+     		//driver.close();
+     	}
+    @Test
+    public void testValidInputValidResultForQ1() {
+        
+        // Input
+        String firstNumber = "10";
+        String secondNumber = "5";
+        String result = "15";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q1");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(10);
+        submitButton.click();
+ 
+        Assert.assertEquals("http://localhost:8080/q2", driver.getCurrentUrl());
+    }
+    
+    @Test
+    public void testValidInputValidResultForQ2() {
+        
+        // Input
+        String firstNumber = "10";
+        String secondNumber = "5";
+        String result = "5";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q2");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(10);
+        submitButton.click();
+        
+        Assert.assertEquals("http://localhost:8080/q3", driver.getCurrentUrl());
+    }
+    
+    
+    @Test
+    public void testValidInputValidResultForQ3() {
+    
+        
+        // Input
+        String firstNumber = "10";
+        String secondNumber = "5";
+        String result = "50";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q3");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(10);
+        submitButton.click();
+      
+        Assert.assertEquals("http://localhost:8080/login", driver.getCurrentUrl());
+        // Wait for the message element to be present on the page
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'All questions Answered! Thank you for the participation')]")));
+        sleep(5);
+        Assert.assertEquals("All questions Answered! Thank you for the participation", messageElement.getText());
+    
     }
 }
