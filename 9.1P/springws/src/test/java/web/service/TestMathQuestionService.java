@@ -304,13 +304,264 @@ public class TestMathQuestionService {
     }
     
     /*** Q1 page failure testing***/ 
-    //public void tesValidNumbersandIncorrectResultForQ1{}
-    //public void testInValidNumber12andInValidResultForQ1{}
-    //public void testInValidNumber1ForQ1{}
-    //public void testInValidNumber2ForQ1{}
-    //public void testInValidResultForQ1{}
-    //public void testInValidNumber12tForQ1{}
-    //public void testInValidNumber1andInvalidResulttForQ1{}
-    //public void testInValidNumber2andInvalidResulttForQ1{}
+    @Test
+    public void testValidNumbersandIncorrectResultForQ1(){
+    	System.out.println("++++++Test Case 9 - Incorrect Results of Q1 ++++++");
+        // Input
+        String firstNumber = "10";
+        String secondNumber = "5";
+        String result = "115";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q1");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(5);
+        submitButton.click();
+ 
+        //waiting for error messsage
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong answer, try again.')]")));
+        sleep(5);
+        Assert.assertEquals("Wrong answer, try again.", messageElement.getText());
     
+ 		sleep(5);
+    	
+    }
+    @Test
+    public void testInValidNumber12andInValidResultForQ1(){
+    	System.out.println("++++++Test Case 10 - QA1 -  Invalid Number 1  - Invalid number 2 - Invalid Results ++++++");
+        // Input
+        String firstNumber = "two";
+        String secondNumber = "three";
+        String result = "five";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q1");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(5);
+        submitButton.click();
+ 
+        //waiting for error messsage
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
+        sleep(5);
+        Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
+    
+ 		sleep(5);
+    }
+    @Test
+    public void testInValidNumber1ForQ1(){
+    	System.out.println("++++++Test Case 11 - QA1 -  Invalid Number 1  - Valid number 2 - Valid Results ++++++");
+        // Input
+        String firstNumber = "ten";
+        String secondNumber = "10";
+        String result = "15";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q1");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(5);
+        submitButton.click();
+ 
+        //waiting for error messsage
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
+        sleep(5);
+        Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
+    
+    
+ 		sleep(5);
+	}
+    @Test
+    public void testInValidNumber2ForQ1(){
+    	System.out.println("++++++Test Case 12 - QA1 -  Invalid Number 2  - Valid number 1 - Valid Results  ++++++");
+        // Input
+        String firstNumber = "15";
+        String secondNumber = "zero";
+        String result = "15";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q1");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(5);
+        submitButton.click();
+ 
+        //waiting for error messsage
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
+        sleep(5);
+        Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
+    
+    
+ 		sleep(5);
+    }
+    @Test
+    public void testInValidResultForQ1(){
+    	System.out.println("++++++Test Case 13 - QA1 -  Valid Number 1  - Valid number 2 - Invalid Results ++++++");
+        // Input
+        String firstNumber = "15";
+        String secondNumber = "10";
+        String result = "Twenty Five";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q1");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(5);
+        submitButton.click();
+ 
+        //waiting for error messsage
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
+        sleep(5);
+        Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
+    
+    
+ 		sleep(5);
+    }
+    @Test
+    public void testInValidNumber12tForQ1(){
+    	System.out.println("++++++Test Case 14 - QA1 -  InValid Number 1  - InValid number 2 - Valid Results ++++++");
+        // Input
+        String firstNumber = "One";
+        String secondNumber = "Two";
+        String result = "25";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q1");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(5);
+        submitButton.click();
+ 
+        //waiting for error messsage
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
+        sleep(5);
+        Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
+    
+    
+ 		sleep(5);
+    }
+    @Test
+    public void testInValidNumber1andInvalidResulttForQ1(){
+    	System.out.println("++++++Test Case 15 - Successful Results of Q1 ++++++");
+        // Input
+        String firstNumber = "One";
+        String secondNumber = "2";
+        String result = "three";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q1");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(5);
+        submitButton.click();
+ 
+        //waiting for error messsage
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
+        sleep(5);
+        Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
+    
+    
+ 		sleep(5);
+    	
+    
+   }
+   
+    @Test
+    public void testInValidNumber2andInvalidResulttForQ1(){
+    	System.out.println("++++++Test Case 16 - Successful Results of Q1 ++++++");
+        // Input
+        String firstNumber = "90";
+        String secondNumber = "Hundred";
+        String result = "three";
+        
+        // Navigate to q1 page
+        driver.navigate().to("http://localhost:8080/q1");
+        
+        // Enter values in text boxes
+        WebElement firstNumberInput = driver.findElement(By.id("number1"));
+        WebElement secondNumberInput = driver.findElement(By.id("number2"));
+        WebElement resultInput = driver.findElement(By.id("result"));
+        WebElement submitButton = driver.findElement(By.cssSelector("[type=submit]"));
+       
+        firstNumberInput.sendKeys(firstNumber);
+        secondNumberInput.sendKeys(secondNumber);
+        resultInput.sendKeys(result);
+        sleep(5);
+        submitButton.click();
+ 
+        //waiting for error messsage
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
+        sleep(5);
+        Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
+    
+    
+ 		sleep(5);
+    }
+    
+
 }
