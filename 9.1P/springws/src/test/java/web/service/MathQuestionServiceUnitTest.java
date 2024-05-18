@@ -17,48 +17,66 @@ public class MathQuestionServiceUnitTest {
 //		Assert.assertNull(MathQuestionService.q1Addition("", "2"));
 //	}	
 	
+	
 	@Test
-    public void testLoginSuccessforValidUsernameandValidPassword() {
+    public void testValidInputsValidResultForQ1() {
         Assert.assertEquals(MathQuestionService.q1Addition("1", "2"), 3, 0);
     }
 
     @Test
-    public void testInValidNumber12andInValidResultForQ1() {
-    	Assert.assertEquals(MathQuestionService.q1Addition("Invalid", "Invalid"), 3, 0);
+    public void testInValidNumber12ForQ1() {
+    	Assert.assertEquals(MathQuestionService.q1Addition("Invalid", "Invalid"), Double.NaN, 0);
     }
 
     @Test
-    public void tesValidNumbersandIncorrectResultForQ1() {
-    	Assert.assertNull("Stay on q1 page", MathQuestionService.q1Addition("1", "2"));
+    public void testValidNumber1InValidNumber2ForQ1() {
+    	Assert.assertEquals("Stay on q1 page", MathQuestionService.q1Addition("1", "Invalid"), Double.NaN, 0);
     }
 
     @Test
-    public void testInValidResultForQ1() {
-    	Assert.assertNull("Stay on q1 page", MathQuestionService.q1Addition("1", "Invalid"));
+    public void testInValidNumber1ValidNumber2ForQ1() {
+    	Assert.assertEquals("Stay on q1 page", MathQuestionService.q1Addition("Invalid", "2"), Double.NaN, 0);
+    }
+    
+    
+	@Test
+    public void testValidInputsValidResultForQ2() {
+        Assert.assertEquals(MathQuestionService.q2Subtraction("6", "2"), 4, 0);
     }
 
     @Test
-    public void testInValidNumber1ForQ1() {
-    	Assert.assertNull("Stay on q1 page", MathQuestionService.q1Addition("Invalid", "2"));
+    public void testInValidNumber12ForQ2() {
+    	Assert.assertEquals(MathQuestionService.q2Subtraction("Invalid", "Invalid"), Double.NaN, 0);
     }
 
     @Test
-    public void testInValidNumber1andInvalidResulttForQ1() {
-    	Assert.assertNull("Stay on q1 page", MathQuestionService.q1Addition("Invalid", "Invalid"));
+    public void testValidNumber1InValidNumber2ForQ2() {
+    	Assert.assertEquals("Stay on q1 page", MathQuestionService.q2Subtraction("1", "Invalid"), Double.NaN, 0);
     }
 
     @Test
-    public void testInValidNumber2ForQ1() {
-    	Assert.assertNull("Stay on q1 page", MathQuestionService.q1Addition("1", "Invalid"));
+    public void testInValidNumber1ValidNumber2ForQ2() {
+    	Assert.assertEquals("Stay on q1 page", MathQuestionService.q2Subtraction("Invalid", "2"), Double.NaN, 0);
+    }
+    
+	@Test
+    public void testValidInputsValidResultForQ3() {
+        Assert.assertEquals(MathQuestionService.qa3multipy("9", "2"), 18, 0);
     }
 
     @Test
-    public void testInValidNumber2andInvalidResulttForQ1() {
-    	Assert.assertNull("Stay on q1 page", MathQuestionService.q1Addition("2", "Invalid"));
+    public void testInValidNumber12ForQ3() {
+    	Assert.assertEquals(MathQuestionService.qa3multipy("Invalid", "Invalid"), Double.NaN, 0);
     }
 
     @Test
-    public void testInValidNumber12tForQ1() {
-    	Assert.assertNull("Stay on q1 page", MathQuestionService.q1Addition("Invalid", "Invalid"));
+    public void testValidNumber1InValidNumber2ForQ3() {
+    	Assert.assertEquals("Stay on q1 page", MathQuestionService.qa3multipy("1", "Invalid"), Double.NaN, 0);
     }
+
+    @Test
+    public void testInValidNumber1ValidNumber2ForQ3() {
+    	Assert.assertEquals("Stay on q1 page", MathQuestionService.qa3multipy("Invalid", "2"), Double.NaN, 0);
+    }
+
 }
