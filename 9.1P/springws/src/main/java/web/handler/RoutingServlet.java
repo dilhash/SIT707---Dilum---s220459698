@@ -71,14 +71,14 @@ public class RoutingServlet {
 		String number1 = request.getParameter("number1");
 		String number2 = request.getParameter("number2");
 		String resultUser = request.getParameter("result");
-		boolean isValid = MathQuestionService.numberValidation(number1, number2, resultUser);
+		boolean isValid = MathQuestionService.numberValidation(resultUser);
 		RedirectView redirectView = null;
+		double calculatedResult = MathQuestionService.q1Addition(number1, number2);
 		
-		if(isValid == true) {
-			double calculatedResult = MathQuestionService.q1Addition(number1, number2);
-			System.out.println(
-					"User result: " + resultUser + ", answer: " + calculatedResult);
+		if (isValid && !Double.isNaN(calculatedResult)) {
 			
+			System.out.println(
+					"User result: " + resultUser + ", answer: " + calculatedResult);		
 
 			if (calculatedResult == Double.valueOf(resultUser)) {
 				redirectView = new RedirectView("/q2", true);
@@ -114,18 +114,19 @@ public class RoutingServlet {
 		String number2 = request.getParameter("number2");
 		String resultUser = request.getParameter("result");
 		
-		boolean isValid = MathQuestionService.numberValidation(number1, number2, resultUser);
+		boolean isValid = MathQuestionService.numberValidation(resultUser);
 		RedirectView redirectView = null;
+		double calculatedResult = MathQuestionService.q2Subtraction(number1, number2);
 		
-		if(isValid ==true) {
-			double calculatedResult = MathQuestionService.q2Subtraction(number1, number2);
-			System.out.println("User result: " + resultUser + ", answer: " + calculatedResult);
+		if (isValid && !Double.isNaN(calculatedResult)) {
 			
-			
+			System.out.println(
+					"User result: " + resultUser + ", answer: " + calculatedResult);		
+
 			if (calculatedResult == Double.valueOf(resultUser)) {
 				redirectView = new RedirectView("/q3", true);
 			} else {
-				// Q1 wrong
+				// Q2 wrong.
 				//
 				redirectView = new RedirectView("/q2", true);
 				// Show error message
@@ -139,6 +140,36 @@ public class RoutingServlet {
 			redirectAttributes.addFlashAttribute("message", "Wrong inputs, try again.");
 			return redirectView;
 		}
+		
+		
+	
+		
+		
+//		boolean isValid = MathQuestionService.numberValidation(number1, number2, resultUser);
+//		RedirectView redirectView = null;
+//		
+//		if(isValid ==true) {
+//			double calculatedResult = MathQuestionService.q2Subtraction(number1, number2);
+//			System.out.println("User result: " + resultUser + ", answer: " + calculatedResult);
+//			
+//			
+//			if (calculatedResult == Double.valueOf(resultUser)) {
+//				redirectView = new RedirectView("/q3", true);
+//			} else {
+//				// Q1 wrong
+//				//
+//				redirectView = new RedirectView("/q2", true);
+//				// Show error message
+//				//
+//				redirectAttributes.addFlashAttribute("message", "Wrong answer, try again.");
+//			}		
+//			return redirectView;
+//		}
+//		else {
+//			redirectView = new RedirectView("/q2", true);
+//			redirectAttributes.addFlashAttribute("message", "Wrong inputs, try again.");
+//			return redirectView;
+//		}
 	}
 	
 
@@ -154,20 +185,21 @@ public class RoutingServlet {
 			String number1 = request.getParameter("number1");
 			String number2 = request.getParameter("number2");
 			String resultUser = request.getParameter("result");
-			
-			boolean isValid = MathQuestionService.numberValidation(number1, number2, resultUser);
+
+			boolean isValid = MathQuestionService.numberValidation(resultUser);
 			RedirectView redirectView = null;
+			double calculatedResult = MathQuestionService.qa3multipy(number1, number2);
 			
-			if(isValid ==true) {
-				double calculatedResult = MathQuestionService.qa3multipy(number1, number2);
-				System.out.println("User result: " + resultUser + ", answer: " + calculatedResult);
+			if (isValid && !Double.isNaN(calculatedResult))  {
 				
-				
+				System.out.println(
+						"User result: " + resultUser + ", answer: " + calculatedResult);		
+
 				if (calculatedResult == Double.valueOf(resultUser)) {
 					redirectView = new RedirectView("/login", true);
 					redirectAttributes.addFlashAttribute("message", "All questions Answered! Thank you for the participation");
 				} else {
-					// Q1 wrong
+					// Q3 wrong.
 					//
 					redirectView = new RedirectView("/q3", true);
 					// Show error message
@@ -177,10 +209,35 @@ public class RoutingServlet {
 				return redirectView;
 			}
 			else {
-				redirectView = new RedirectView("/q3", true);
-				redirectAttributes.addFlashAttribute("message", "Wrong inputs, try again.");
-				return redirectView;
+			redirectView = new RedirectView("/q3", true);
+			redirectAttributes.addFlashAttribute("message", "Wrong inputs, try again.");
+			return redirectView;
 			}
+			
+			
+//			if(isValid ==true) {
+//				double calculatedResult = MathQuestionService.qa3multipy(number1, number2);
+//				System.out.println("User result: " + resultUser + ", answer: " + calculatedResult);
+//				
+//				
+//				if (calculatedResult == Double.valueOf(resultUser)) {
+//					redirectView = new RedirectView("/login", true);
+//					redirectAttributes.addFlashAttribute("message", "All questions Answered! Thank you for the participation");
+//				} else {
+//					// Q1 wrong
+//					//
+//					redirectView = new RedirectView("/q3", true);
+//					// Show error message
+//					//
+//					redirectAttributes.addFlashAttribute("message", "Wrong answer, try again.");
+//				}		
+//				return redirectView;
+//			}
+//			else {
+//				redirectView = new RedirectView("/q3", true);
+//				redirectAttributes.addFlashAttribute("message", "Wrong inputs, try again.");
+//				return redirectView;
+//			}
 		
 		
 		

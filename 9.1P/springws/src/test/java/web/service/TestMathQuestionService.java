@@ -63,7 +63,7 @@ public class TestMathQuestionService {
     public void testLoadHomePage() {
     	System.out.println("++++++Test Case 1 - Application Web URL Loads correclty ++++++");
         driver.navigate().to("http://localhost:8080/");
-        //sleep(5);
+        //sleep(2);
         
      // Assert the content on the home page
         
@@ -80,7 +80,7 @@ public class TestMathQuestionService {
         
         // Assert that the URL navigated to is the login page
         Assert.assertEquals("http://localhost:8080/login", driver.getCurrentUrl());
-        //sleep(5);
+        //sleep(2);
 
     }
     
@@ -88,7 +88,7 @@ public class TestMathQuestionService {
     public void testLoginSuccessforValidUsernameandValidPassword() {
         System.out.println("++++++Test Case 2 - Successfull Login ++++++");
         driver.navigate().to("http://localhost:8080/login");
-        //sleep(5);
+        //sleep(2);
 
      // Find username element
      		WebElement ele = driver.findElement(By.id("username"));
@@ -109,7 +109,7 @@ public class TestMathQuestionService {
      		ele = driver.findElement(By.cssSelector("[type=submit]"));
      		ele.submit();
      		
-     		//sleep(5);
+     		//sleep(2);
      		
      		 Assert.assertEquals("http://localhost:8080/q1", driver.getCurrentUrl());
      		
@@ -197,7 +197,7 @@ public class TestMathQuestionService {
         // Wait for the message element to be present on the page
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'All questions Answered! Thank you for the participation')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("All questions Answered! Thank you for the participation", messageElement.getText());
     
     }
@@ -208,7 +208,7 @@ public class TestMathQuestionService {
     public void testLoginFailureforValidUsernameandInvalidPassword() {
     	System.out.println("++++++Test Case 6 - Failure - Login - Valid Username - Invalid Password ++++++");
         driver.navigate().to("http://localhost:8080/login");
-        //sleep(5);
+        //sleep(2);
 
      // Find username element
      		WebElement ele = driver.findElement(By.id("username"));
@@ -231,17 +231,17 @@ public class TestMathQuestionService {
      		
      		WebDriverWait wait = new WebDriverWait(driver, 10);
             WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Incorrect credentials.')]")));
-            //sleep(5);
+            //sleep(2);
             Assert.assertEquals("Incorrect credentials.", messageElement.getText());
         
-     		//sleep(5);
+     		//sleep(2);
     }
     
     @Test
     public void testLoginFailureforInValidUsernameandValidPassword() {
     	System.out.println("++++++Test Case 7 - Failure - Login - InValid Username - Valid Password ++++++");
         driver.navigate().to("http://localhost:8080/login");
-        //sleep(5);
+        //sleep(2);
 
      // Find username element
      		WebElement ele = driver.findElement(By.id("username"));
@@ -264,17 +264,17 @@ public class TestMathQuestionService {
      		
      		WebDriverWait wait = new WebDriverWait(driver, 10);
             WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Incorrect credentials.')]")));
-            //sleep(5);
+            //sleep(2);
             Assert.assertEquals("Incorrect credentials.", messageElement.getText());
         
-     		//sleep(5);
+     		//sleep(2);
     }
     
     @Test
     public void testLoginFailureforInValidUsernameandInvalidPassword() {
     	System.out.println("++++++Test Case 8 - Failure - Login - InValid Username - Invalid Password ++++++");
         driver.navigate().to("http://localhost:8080/login");
-        //sleep(5);
+        //sleep(2);
 
      // Find username element
      		WebElement ele = driver.findElement(By.id("username"));
@@ -297,10 +297,10 @@ public class TestMathQuestionService {
      		
      		WebDriverWait wait = new WebDriverWait(driver, 10);
             WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Incorrect credentials.')]")));
-            //sleep(5);
+            //sleep(2);
             Assert.assertEquals("Incorrect credentials.", messageElement.getText());
         
-     		//sleep(5);
+     		//sleep(2);
     }
     
     /*** Q1 page failure testing***/ 
@@ -324,16 +324,16 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong answer, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong answer, try again.", messageElement.getText());
     
- 		//sleep(5);
+ 		//sleep(2);
     	
     }
     @Test
@@ -356,16 +356,16 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidNumber1ForQ1(){
@@ -387,17 +387,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
- 
+        //sleep(2);
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
 	}
     @Test
     public void testInValidNumber2ForQ1(){
@@ -419,17 +419,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidResultForQ1(){
@@ -451,17 +451,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidNumber12tForQ1(){
@@ -483,17 +483,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidNumber1andInvalidResulttForQ1(){
@@ -515,17 +515,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     	
     
    }
@@ -549,17 +549,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     
     /*** Q2 page failure testing***/ 
@@ -583,16 +583,16 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong answer, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong answer, try again.", messageElement.getText());
     
- 		//sleep(5);
+ 		//sleep(2);
     	
     }
     @Test
@@ -615,16 +615,16 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidNumber1ForQ2(){
@@ -646,17 +646,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
 	}
     @Test
     public void testInValidNumber2ForQ2(){
@@ -678,17 +678,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidResultForQ2(){
@@ -710,17 +710,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidNumber12tForQ2(){
@@ -742,17 +742,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidNumber1andInvalidResulttForQ2(){
@@ -774,17 +774,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     	
     
    }
@@ -808,17 +808,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     
 
@@ -844,16 +844,16 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong answer, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong answer, try again.", messageElement.getText());
     
- 		//sleep(5);
+ 		//sleep(2);
     	
     }
     @Test
@@ -876,16 +876,16 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidNumber1ForQ3(){
@@ -907,17 +907,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
 	}
     @Test
     public void testInValidNumber2ForQ3(){
@@ -939,17 +939,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidResultForQ3(){
@@ -971,17 +971,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidNumber12tForQ3(){
@@ -1003,17 +1003,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     @Test
     public void testInValidNumber1andInvalidResulttForQ3(){
@@ -1035,17 +1035,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     	
     
    }
@@ -1070,17 +1070,17 @@ public class TestMathQuestionService {
         firstNumberInput.sendKeys(firstNumber);
         secondNumberInput.sendKeys(secondNumber);
         resultInput.sendKeys(result);
-        //sleep(5);
+        //sleep(2);
         submitButton.click();
  
         //waiting for error messsage
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), 'Wrong inputs, try again.')]")));
-        //sleep(5);
+        //sleep(2);
         Assert.assertEquals("Wrong inputs, try again.", messageElement.getText());
     
     
- 		//sleep(5);
+ 		//sleep(2);
     }
     
 
