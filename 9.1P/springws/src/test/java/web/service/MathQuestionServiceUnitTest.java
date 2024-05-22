@@ -71,12 +71,21 @@ public class MathQuestionServiceUnitTest {
 
     @Test
     public void testValidNumber1InValidNumber2ForQ3() {
-    	Assert.assertEquals("Stay on q1 page", MathQuestionService.qa3multipy("1", "Invalid"), Double.NaN, 0);
+    	Assert.assertEquals(MathQuestionService.qa3multipy("1", "Invalid"), Double.NaN, 0);
     }
 
     @Test
     public void testInValidNumber1ValidNumber2ForQ3() {
-    	Assert.assertEquals("Stay on q1 page", MathQuestionService.qa3multipy("Invalid", "2"), Double.NaN, 0);
+    	Assert.assertEquals(MathQuestionService.qa3multipy("Invalid", "2"), Double.NaN, 0);
+    }
+    
+    @Test
+    public void testnumberValidationForDouble() {
+    	Assert.assertTrue(MathQuestionService.numberValidation("12.3"));
+    }
+    @Test
+    public void testnumberValidationForNotDouble() {
+    	Assert.assertFalse(MathQuestionService.numberValidation("not a number"));
     }
 
 }
